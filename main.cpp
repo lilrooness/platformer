@@ -32,9 +32,9 @@ Player p;
 
 int main(){
 	init();
-	ladder = load_bmp("ladder.bmp", NULL);
-	dirt = load_bmp("dirt.bmp", NULL);
-	shocked1 = load_bmp("shocked.bmp", NULL);
+	ladder = load_bmp("assets/ladder.bmp", NULL);
+	dirt = load_bmp("assets/dirt.bmp", NULL);
+	shocked1 = load_bmp("assets/shocked.bmp", NULL);
 	if(ladder == NULL || dirt == NULL || shocked1 == NULL){
 		std::cout << "Image not loaded\nExiting . . .\n" << std::endl;
 		exit(1);
@@ -208,8 +208,8 @@ void loadStartPoint(){
 }
 
 void loadMaps(){
-	char mapFilename[] = {"map.txt"};
-	char enemyFilename[] = {"enemyMap.txt"};
+	char mapFilename[] = {"assets/map.txt"};
+	char enemyFilename[] = {"assets/enemyMap.txt"};
 	loadMap(mapFilename);
 	loadEnemyMap(enemyFilename);
 	printf("loaded maps");

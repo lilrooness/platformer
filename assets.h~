@@ -1,0 +1,9 @@
+#include <allegro.h>
+
+void loadBitmaps();
+
+BITMAP *ladder;
+
+void loadBitmaps(){
+	ladder = load_bitmap("ladder.bmp", NULL);
+}

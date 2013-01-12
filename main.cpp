@@ -208,9 +208,11 @@ void loadStartPoint(){
 }
 
 void loadMaps(){
-	char mapFilename[] = {"assets/map.txt"};
-	char enemyFilename[] = {"assets/enemyMap.txt"};
-	loadMap(mapFilename);
-	loadEnemyMap(enemyFilename);
+	//char mapFilename[] = {"assets/map.txt"};
+	//char enemyFilename[] = {"assets/enemyMap.txt"};
+	//loadMap(mapFilename);
+	//loadEnemyMap(enemyFilename);
+	loadMap(levels[currentLevel].c_str());
+	loadEnemyMap(enemyMaps[currentLevel].c_str());
 	printf("loaded maps");
 }

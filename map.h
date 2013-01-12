@@ -13,6 +13,11 @@ void loadMap(char filename[]);//loads in map from a file "filename"
 bool isOnLadder(int x, int y);
 void loadBitmaps();//loads the assets
 
+string levels[] = {"assets/map.txt"};
+string enemyMaps[] = {"assets/enemyMap.txt"};
+
+int currentLevel = 0;
+
 int **map;
 int **enemyMap;
 int rows;
@@ -47,7 +52,7 @@ bool isCollision(int x, int y){
 	return collision;
 }
 
-void loadMap(char filename[]){
+void loadMap(const char* filename){
 	int lines = 0;
 	string line;
 	ifstream mapFile;
@@ -81,7 +86,7 @@ void loadMap(char filename[]){
 	columns = length;
 }
 
-void loadEnemyMap(char filename[]){
+void loadEnemyMap(const char* filename){
 	int lines = 0;
 	string line;
 	ifstream mapFile;

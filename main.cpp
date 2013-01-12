@@ -35,7 +35,9 @@ int main(){
 	ladder = load_bmp("assets/ladder.bmp", NULL);
 	dirt = load_bmp("assets/dirt.bmp", NULL);
 	shocked1 = load_bmp("assets/shocked.bmp", NULL);
-	if(ladder == NULL || dirt == NULL || shocked1 == NULL){
+	goldKey = load_bmp("assets/key.bmp", NULL);
+	door = load_bmp("assets/door.bmp", NULL);
+	if(ladder == NULL || dirt == NULL || shocked1 == NULL || goldKey == NULL || door == NULL){
 		std::cout << "Image not loaded\nExiting . . .\n" << std::endl;
 		exit(1);
 	}
@@ -73,7 +75,7 @@ void gameLoop(){
 		updateGravity();
 		render();
 		checkDeath();
-		rest(3);
+		rest(9);
 	}
 	endGame();
 }
@@ -98,8 +100,8 @@ void update(){
 
 void render(){
 	if(!isWon){
-		p.render(camera);
 		renderMap(camera);
+		p.render(camera);
 		blit(camera, buffer, cameraX, cameraY, 0, 0, 640, 480);
 		blit(buffer, screen, 0, 0, 0, 0, 640, 480);
 		clear_bitmap(camera);
@@ -167,6 +169,7 @@ void resetLevel(){
 	p.x = startx;
 	p.y = starty;
 	p.dead = false;
+	isKeyCollected = false;
 }
 
 void initEnemies(){
@@ -208,10 +211,12 @@ void loadStartPoint(){
 }
 
 void loadMaps(){
-	//char mapFilename[] = {"assets/map.txt"};
-	//char enemyFilename[] = {"assets/enemyMap.txt"};
-	//loadMap(mapFilename);
-	//loadEnemyMap(enemyFilename);
+	/*
+	char mapFilename[40];
+	char enemyFilename[40];
+	strcpy(mapFilename, levels[currentLevel].c_str());
+	strcpy(enemyFilename, enemyMaps[currentLevel].c_str());
+	*/
 	loadMap(levels[currentLevel].c_str());
 	loadEnemyMap(enemyMaps[currentLevel].c_str());
 	printf("loaded maps");

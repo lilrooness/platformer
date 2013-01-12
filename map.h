@@ -13,8 +13,8 @@ void loadMap(char filename[]);//loads in map from a file "filename"
 bool isOnLadder(int x, int y);
 void loadBitmaps();//loads the assets
 
-string levels[] = {"assets/map.txt"};
-string enemyMaps[] = {"assets/enemyMap.txt"};
+string levels[] = {"assets/map.txt", "assets/level2.txt"};
+string enemyMaps[] = {"assets/enemyMap.txt", "assets/enemies2.txt"};
 
 int currentLevel = 0;
 
@@ -25,6 +25,10 @@ int columns;
 BITMAP *ladder;
 BITMAP *dirt;
 BITMAP *shocked1;
+BITMAP *goldKey;
+BITMAP *door;
+
+bool isKeyCollected = false;
 
 void renderMap(BITMAP *buffer){
 	for(int i=0; i<rows; i++){
@@ -34,6 +38,11 @@ void renderMap(BITMAP *buffer){
 				draw_sprite(buffer, dirt, j*20, i*20);
 			}else if(map[i][j] == 4){
 				draw_sprite(buffer, ladder, j*20, i*20);
+			}else if(map[i][j] == 6){
+				draw_sprite(buffer, door, j*20, i*20);
+			}
+			if(map[i][j] == 5 && !isKeyCollected){
+				draw_sprite(buffer, goldKey, j*20, i*20);
 			}
 		}
 	}
@@ -48,6 +57,8 @@ bool isCollision(int x, int y){
 		collision = true;
 	}else if(map[my][mx] == 1 || map[my][mx] == 2){
 		collision = true;
+	}else if(map[my][mx] == 5){
+		isKeyCollected = true;
 	}
 	return collision;
 }
